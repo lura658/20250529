@@ -23,6 +23,9 @@ function draw() {
   image(video, 0, 0, width, height);
   drawHandKeypoints();
 
+  // 互動說明
+  drawInstruction();
+
   if (gameState === "start") {
     drawStartScreen();
     checkStartButtonTouch();
@@ -138,5 +141,22 @@ function drawHandKeypoints() {
       noStroke();
       ellipse(x, y, 8, 8);
     }
+    // 在食指指尖畫一個大圓
+    if (prediction.annotations && prediction.annotations.indexFinger) {
+      const tip = prediction.annotations.indexFinger[3];
+      fill(255, 0, 0, 180);
+      noStroke();
+      ellipse(tip[0], tip[1], 24, 24);
+    }
   }
+}
+
+// 新增互動說明
+function drawInstruction() {
+  fill(255, 240);
+  rect(width - 210, 20, 190, 110, 16);
+  fill(0);
+  textSize(16);
+  textAlign(LEFT, TOP);
+  text("互動說明：\n\n- 食指紅圈：偵測到的食指指尖\n- 勝利手勢（V）：選擇A\n- 指指手勢：選擇B\n- 點擊藍色按鈕開始", width - 200, 30);
 }
