@@ -4,6 +4,7 @@ let predictions = [];
 let gameState = "start";
 let correctAnswer = "A";
 let startButton = { x: 220, y: 200, w: 200, h: 100 };
+let hasStarted = false;
 
 function setup() {
   let canvas = createCanvas(640, 480);
@@ -46,9 +47,15 @@ function drawStartScreen() {
   fill(255);
   textSize(24);
   text("開始遊戲", width / 2, startButton.y + startButton.h / 2);
+
+  fill(255);
+  textSize(16);
+  text("請用手指碰觸按鈕開始", width / 2, startButton.y + startButton.h + 30);
 }
 
 function checkStartButtonTouch() {
+  if (hasStarted) return;
+
   for (let hand of predictions) {
     for (let pt of hand.landmarks) {
       let x = pt[0];
@@ -59,7 +66,11 @@ function checkStartButtonTouch() {
         y > startButton.y &&
         y < startButton.y + startButton.h
       ) {
-        gameState = "question";
+        hasStarted = true;
+        setTimeout(() => {
+          gameState = "question";
+        }, 300);
+        break;
       }
     }
   }
