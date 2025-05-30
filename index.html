@@ -1,19 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Sketch</title>
-
-    <link rel="stylesheet" type="text/css" href="style.css">
-
-    <script src="libraries/p5.min.js"></script>
-    <script src="libraries/p5.sound.min.js"></script>
+    <title>EduMind Lab 教育科技迷宮</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.dom.min.js"></script>
     <script src="https://unpkg.com/ml5@0.12.2/dist/ml5.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        font-family: sans-serif;
+      }
+      #canvas-container {
+        flex: 3;
+      }
+      #gesture-instructions {
+        flex: 1;
+        padding: 10px;
+        background: #f0f0f0;
+        font-size: 16px;
+      }
+    </style>
   </head>
-
   <body>
+    <div id="canvas-container"></div>
+    <div id="gesture-instructions">
+      <h3>手势操作說明</h3>
+      <ul>
+        <li>✋ 從開始螢幕啟動遊戲</li>
+        <li>✌️ 選擇 A 選項</li>
+        <li>🖐 選擇 B 選項</li>
+        <li>✊ 取消 / 否定</li>
+        <li>👐 準備模式</li>
+      </ul>
+    </div>
     <script src="sketch.js"></script>
   </body>
 </html>
